@@ -3,45 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Embed</title>
+	<link rel="shortcut icon" type="image/png" href="https://i.postimg.cc/9XLTyfmZ/Jonas.png">
+    <title>Tube Videos</title>
     <style>
         body {
             text-align: center;
             font-family: Arial, sans-serif;
-            margin: 20px 50px 0 50px
+            margin: 20px 50px 0 50px;
         }
         iframe {
             max-width: 100%;
             border: none;
-            margin: 0 10px 5px 0
+            margin: 0 10px 5px 0;
         }
-        img {width:100px; float: left}
-        h2 {float: right}
-        input {margin: 20px 0 100px 0; width: 500px; height: 30px;}
-        /*
-        top: pra cima
-        right: direita
-        bottom: pra baixo
-        left: esquerda
-        */
+        img { width:100px; float: left; }
+        h2 { float: right; }
+        input { margin: 20px 0 100px 0; width: 50%; height: 30px; }
+        table { width: 100%; }
     </style>
 </head>
 <body>
-	<div>
-    <h2>YouTube Do Jonas</h2>
-    <img src="https://i.postimg.cc/9XLTyfmZ/Jonas.png">
-    <input>
+    <div>
+        <h2>YouTube Do Jonas</h2>
+        <img src="https://i.postimg.cc/9XLTyfmZ/Jonas.png" alt="Jonas Image">
+        <input id="pesquisa" placeholder="Digite o número do vídeo...">
     </div>
     <table>
-    <iframe width="350" height="200" src="https://www.youtube.com/embed/ruSB3iSRWeo" allowfullscreen></iframe>
-    <iframe width="350" height="200" src="https://www.youtube.com/embed/ZCPt78a1eLc" allowfullscreen></iframe>
-    <iframe width="350" height="200" src="https://www.youtube.com/embed/ZPKjW-zAKWY" allowfullscreen></iframe>
-    <iframe width="350" height="200" src="https://www.youtube.com/embed/9uOL2M6iyro" allowfullscreen></iframe>
-    <iframe width="350" height="200" src="https://www.youtube.com/embed/Yuzl_DMSvhk" allowfullscreen></iframe>
-    <iframe width="350" height="200" src="https://www.youtube.com/embed/0gZk8Pbc5XE" allowfullscreen></iframe>
-    <iframe width="350" height="200" src="https://www.youtube.com/embed/8glGVJo9oz4" allowfullscreen></iframe>
-    <iframe width="350" height="200" src="https://www.youtube.com/embed/b_nJhnTQaZI" allowfullscreen></iframe>
-    <iframe width="350" height="200" src="https://www.youtube.com/embed/27cutTQakBk" allowfullscreen></iframe>
+        <tr>
+            <th><p>1</p><iframe width="350" height="200" class="video" src="https://www.youtube.com/embed/ruSB3iSRWeo" allowfullscreen></iframe></th>
+            <th><p>2</p><iframe width="350" height="200" class="video" src="https://www.youtube.com/embed/ZCPt78a1eLc" allowfullscreen></iframe></th>
+            <th><p>3</p><iframe width="350" height="200" class="video" src="https://www.youtube.com/embed/ZPKjW-zAKWY" allowfullscreen></iframe></th>
+        </tr>
+        <tr>
+            <th><p>4</p><iframe width="350" height="200" class="video" src="https://www.youtube.com/embed/9uOL2M6iyro" allowfullscreen></iframe></th>
+            <th><p>5</p><iframe width="350" height="200" class="video" src="https://www.youtube.com/embed/Yuzl_DMSvhk" allowfullscreen></iframe></th>
+            <th><p>6</p><iframe width="350" height="200" class="video" src="https://www.youtube.com/embed/0gZk8Pbc5XE" allowfullscreen></iframe></th>
+        </tr>
+        <tr>
+            <th><p>7</p><iframe width="350" height="200" class="video" src="https://www.youtube.com/embed/8glGVJo9oz4" allowfullscreen></iframe></th>
+            <th><p>8</p><iframe width="350" height="200" class="video" src="https://www.youtube.com/embed/b_nJhnTQaZI" allowfullscreen></iframe></th>
+            <th><p>9</p><iframe width="350" height="200" class="video" src="https://www.youtube.com/embed/27cutTQakBk" allowfullscreen></iframe></th>
+        </tr>
     </table>
+
+    <script>
+        // Acessando o campo de pesquisa
+        let pesquisa = document.getElementById("pesquisa");
+
+        // Evento para verificar o valor inserido
+        pesquisa.addEventListener("input", function() {
+            let videos = document.querySelectorAll(".video");  // Pegando todos os iframes com a classe 'video'
+            let paras = document.querySelectorAll("p");  // Pegando todos os <p> com o número
+            let numero = pesquisa.value;  // Obtendo o valor digitado
+
+            // Laço para ocultar todos os vídeos e parágrafos inicialmente
+            videos.forEach(function(video, index) {
+                if (index + 1 != numero) {  // Se o número do vídeo não corresponder, o esconde
+                    video.style.display = "none";
+                    paras[index].style.display = "none";  // Oculta o <p> correspondente
+                } else {
+                    video.style.display = "block";  // Exibe o vídeo correspondente
+                    paras[index].style.display = "block";  // Exibe o <p> correspondente
+                }
+            });
+        });
+
+        // Evento para quando o campo de pesquisa perder o foco
+        pesquisa.addEventListener("blur", function() {
+            let videos = document.querySelectorAll(".video");  // Pegando todos os iframes
+            let paras = document.querySelectorAll("p");  // Pegando todos os <p> com o número
+
+            // Laço para exibir todos os vídeos e parágrafos novamente
+            videos.forEach(function(video, index) {
+                video.style.display = "block";  // Exibe todos os vídeos
+                paras[index].style.display = "block";  // Exibe todos os parágrafos
+            });
+        });
+    </script>
 </body>
 </html>
